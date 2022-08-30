@@ -1,0 +1,10 @@
+.ItemListContainer{
+    background-color: #282c34;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+}
+
+.ItemListContainer h1{
+    margin: 0px;
+}

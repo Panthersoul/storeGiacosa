@@ -1,0 +1,10 @@
+.cartWidget-p {
+    color: black;
+    margin: 0px;
+    margin-left: 5px;
+    margin-top: 5px;
+    background-color: red;
+    border-radius: 90px;
+    width: 21px;
+    height: 23px;
+}

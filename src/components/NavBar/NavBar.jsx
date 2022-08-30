@@ -1,5 +1,6 @@
 
-import imagenLogo from './img/logo-negro-pestaña.png'
+import imagenLogo from './assets/logo-negro-pestaña.png'
+import CartWidget from '../CartWidget/CartWidget';
 
 const NavBar = () => {
    return (
@@ -7,7 +8,6 @@ const NavBar = () => {
                 <div className="container-fluid ">
                 <img src={imagenLogo} alt="Logo"  />
                     <a className="navbar-brand" href="#"> Hierba</a>
-                    
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -39,7 +39,9 @@ const NavBar = () => {
                             </li>
                         </ul>
                     </div>
+                    
                 </div>
+                    <CartWidget items={1} />
                 </div>
         </nav>
     );
