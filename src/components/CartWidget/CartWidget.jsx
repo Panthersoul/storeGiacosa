@@ -6,7 +6,7 @@ const CartWidget = ({items}) => {
     return (
         <div className='d-flex'>
             <img src={cart} alt="Carrito" />
-            <p className='cartWidget-p'>{items}</p>
+            {items !== 0 ? <p className='cartWidget-p'>{items}</p> : <p></p>}
         </div>
     )
 }
