@@ -27,8 +27,8 @@ const Counter = ( {stock, initial}) => {
                     <input type="text" className='inputAuto text-center'></input>
                 </div>
                 <div className='pt-2'>
-                    <button onClick={suma}>+</button>
                     <button onClick={resta}>-</button>
+                    <button onClick={suma}>+</button>
                 </div>
             </div>
         </div>

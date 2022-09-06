@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ItemListContainer greeting="Hola Mundo!"/>
+      <ItemListContainer greeting="Hola Mundo!" />
       <Counter stock={10} initial={0} />
       <header className="App-header">
         
