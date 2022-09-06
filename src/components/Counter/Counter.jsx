@@ -2,9 +2,9 @@ import style from './style.css'
 import { useState } from "react";
 
 
-const Counter = () => {
-    const [initialState, SetInitialState] = useState(0);
-    const [stockTotal, SetStockTotal] = useState(10);
+const Counter = ( {stock, initial}) => {
+    const [initialState, SetInitialState] = useState(initial);
+    const [stockTotal, SetStockTotal] = useState(stock);
     
     const suma = () => {
         if (initialState < stockTotal){
@@ -12,7 +12,6 @@ const Counter = () => {
             
         }
     };
-
     const resta = () => {
         if (initialState > 0)
         {
@@ -21,10 +20,17 @@ const Counter = () => {
     };
 
     return(
-        <div >
-            <h4>{initialState}</h4>
-            <button onClick={suma}>+</button>
-            <button onClick={resta}>-</button>
+        <div className='fondoOscuro  d-flex justify-content-center pt-5' >
+            <div className='contadorContainer'>
+                <h4>{initialState}</h4>
+                <div className='d-flex justify-content-center pt-2'>
+                    <input type="text" className='inputAuto text-center'></input>
+                </div>
+                <div className='pt-2'>
+                    <button onClick={suma}>+</button>
+                    <button onClick={resta}>-</button>
+                </div>
+            </div>
         </div>
     )
     

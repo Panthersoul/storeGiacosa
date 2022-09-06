@@ -1,3 +1,32 @@
 .counter h4{
         color: white;
 }
+
+.fondoOscuro{
+    background-color: #282c34;
+}
+
+
+.contadorContainer{
+    width: 100px;
+    display: flex;   
+    flex-direction: column;
+    background-color: #282c34;
+    border: solid 1px;
+    border-color: white;
+    border-radius: 15px;
+    padding: 10px;
+
+}
+
+.contadorContainer h4{
+    color: white;
+}
+
+.contadorContainer button{
+    width: 35px;
+}
+
+.inputAuto{
+    overflow: auto;
+}
