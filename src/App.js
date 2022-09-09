@@ -3,14 +3,19 @@ import './App.css';
 import bootstrap from 'bootstrap'
 import Navbar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import Counter from './components/Counter/Counter';
+import ItemCount from './components/ItemCount/ItemCount'
 
 function App() {
+  
+  const manejadorCarrito = (cantidad) => {
+    alert(`Agregaste ${cantidad} al carrito`)
+  };
+  
   return (
     <div className="App">
       <Navbar />
       <ItemListContainer greeting="Hola Mundo!" />
-      <Counter stock={10} initial={0} />
+      <ItemCount stock={10} initial={0} onAdd={manejadorCarrito}/>
       <header className="App-header">
         
         <img src={logo} className="App-logo" alt="logo" />

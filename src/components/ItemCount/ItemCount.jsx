@@ -2,7 +2,7 @@ import style from './style.css'
 import { useState } from "react";
 
 
-const Counter = ( {stock, initial}) => {
+const ItemCount  = ({stock, initial, onAdd}) => {
     const [initialState, SetInitialState] = useState(initial);
     const [stockTotal, SetStockTotal] = useState(stock);
     
@@ -19,9 +19,13 @@ const Counter = ( {stock, initial}) => {
         }
     };
 
+    const manejadorCarrito = () => {
+        if (initialState <= stock) onAdd(initialState);
+    };
+
     return(
-        <div className='fondoOscuro  d-flex justify-content-center pt-5' >
-            <div className='contadorContainer'>
+        <div className='fondoOscuro  d-flex justify-content-center pt-5 ' >
+            <div className='contadorContainer flex-column '>
                 <h4>{initialState}</h4>
                 <div className='d-flex justify-content-center pt-2'>
                     <input type="text" className='inputAuto text-center'></input>
@@ -30,7 +34,9 @@ const Counter = ( {stock, initial}) => {
                     <button onClick={resta}>-</button>
                     <button onClick={suma}>+</button>
                 </div>
+                <button className='w-100' onClick={manejadorCarrito}>Agregar al carrito</button>
             </div>
+            
         </div>
     )
     
@@ -38,4 +44,4 @@ const Counter = ( {stock, initial}) => {
 
 }
 
-export default Counter;
+export default ItemCount;
