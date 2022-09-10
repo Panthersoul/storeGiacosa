@@ -20,7 +20,9 @@ const ItemCount  = ({stock, initial, onAdd}) => {
     };
 
     const manejadorCarrito = () => {
-        if (initialState <= stock) onAdd(initialState);
+        if (initialState <= stock) {
+            onAdd(initialState);
+        }
     };
 
     return(
@@ -34,7 +36,7 @@ const ItemCount  = ({stock, initial, onAdd}) => {
                     <button onClick={resta}>-</button>
                     <button onClick={suma}>+</button>
                 </div>
-                <button className='w-100' onClick={manejadorCarrito}>Agregar al carrito</button>
+                <button className='w-100 mt-2 botonAgregar btn btn-primary' onClick={manejadorCarrito}>Agregar al carrito</button>
             </div>
             
         </div>
