@@ -14,14 +14,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      
       <ItemListContainer />
-      <ItemCount stock={10} initial={0} onAdd={manejadorCarrito}/> 
-      <header className="App-header">
-
-      
-       
-      </header>
       
     </div>
   );

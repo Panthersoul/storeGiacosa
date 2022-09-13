@@ -10,16 +10,17 @@ const ItemListContainer = () => {
 
     /*Llamo la lista una vez montado el componente*/
     useEffect (() => {
-        getProducts();
+        getProducts().then(products => {
+            setproductList(products);
+        })
     },[])
 
 
     /*Cargo despues de dos segundos la data en el state*/
     const getProducts = () => {
         return new Promise ((resolve, reject) => {
-            setTimeout(() => {
-                setproductList(mockData);
-                resolve();
+            setTimeout(() => { 
+                resolve(mockData);
             }, 2000);
         })
     }
