@@ -3,8 +3,8 @@ const Item = ({titulo, precio, img}) => {
     return(
        <div>
            <img src={img} alt="imagen" />
-           <h2>{titulo}</h2>
-           <h5>{precio}</h5>
+           <h5>{titulo}</h5>
+           <h6>{precio}</h6>
        </div>
     )
 }

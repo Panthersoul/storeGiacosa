@@ -4,19 +4,17 @@ const ItemList = ({lista}) => {
     return(
         <div>
             {
-            
-            lista.map((product)=>{
+            lista.map((producto)=>(
                 <Item 
-                
-                titulo={product.titulo} 
-                precio={product.precio} 
-                img={product.img} 
+                key={producto.id}
+                titulo={producto.titulo} 
+                precio={producto.precio} 
+                img={producto.img} 
                 />
-            })
-        }   
+                ))}
         
         </div>
-    )
-}
+    );
+};
 
 export default ItemList;
