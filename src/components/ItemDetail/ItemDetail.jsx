@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from './style.css'
 
-const ItemDetail = ( {key, titulo, descripcion, precio, img} ) => {
+const ItemDetail = ( { titulo, descripcion, precio, img} ) => {
     
 return  (
         <>
