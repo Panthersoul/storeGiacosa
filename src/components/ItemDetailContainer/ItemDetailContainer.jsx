@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import mockData from '../mockData';
 import ItemDetail from "../ItemDetail/ItemDetail";
+import styles from './styles.css'
 
 
 const ItemDetailContainer = () => {
@@ -23,7 +24,7 @@ const ItemDetailContainer = () => {
     }, [])
 
     return (
-        <div>
+        <div className="itemDetailContainer mt-5">
             {
                 product.map((producto)=>(
                     <ItemDetail 
