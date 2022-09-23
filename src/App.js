@@ -4,7 +4,8 @@ import bootstrap from 'bootstrap'
 import Navbar from './components/NavBar/NavBar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-import ItemCount from './components/ItemCount/ItemCount'
+
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 function App() {
   
@@ -15,9 +16,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ItemDetailContainer />
-      {/* <ItemListContainer />*/}
       
+      <ItemListContainer />
+      <ItemDetailContainer />
     </div>
   );
 }

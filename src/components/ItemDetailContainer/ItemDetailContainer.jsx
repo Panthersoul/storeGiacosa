@@ -6,7 +6,10 @@ import styles from './styles.css'
 
 const ItemDetailContainer = () => {
 
-    const [product, setProduct] = useState([]);
+    const [product, setProduct] = useState({});
+    const [loader, setLoader] = useState(true);
+    const productId = 1;
+
 
     const getProduct = () => {
         return new Promise ((resolve, reject) => {
@@ -19,12 +22,17 @@ const ItemDetailContainer = () => {
 
     useEffect (() => {
         getProduct().then(prod => {
+            setLoader(false);
             setProduct(prod.filter(prod => prod.id === 3))
         })               
-    }, [])
+    }, [productId])
+
+    if (loader){
+        return <h1>Cargando detalle del producto ...</h1>
+    }
 
     return (
-        <div className="itemDetailContainer mt-5">
+        <div className="itemDetailContainer d-flex mt-5">
             {
                 product.map((producto)=>(
                     <ItemDetail 
