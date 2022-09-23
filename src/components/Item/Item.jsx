@@ -1,10 +1,16 @@
+import styles from './styles.css'
+
 const Item = ({titulo, precio, img}) => {
-    console.log(precio);
+    
     return(
-       <div className="item m-3">
-           <img src={img} alt="imagen" />
+       <div className="item m-3 text-center">
            <h5>{titulo}</h5>
-           <h6>{precio}</h6>
+           <div className='d-flex flex-column align-content-center'>
+                <img className=" img-thumbnail w-auto" src={img} alt="imagen" />
+                
+                <h6>Precio: $ {precio}</h6>
+           </div>
+           
        </div>
     )
 }

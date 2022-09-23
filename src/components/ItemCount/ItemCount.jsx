@@ -33,8 +33,8 @@ const ItemCount  = ({stock, initial, onAdd}) => {
                     <input type="text" className='inputAuto text-center'></input>
                 </div>
                 <div className='pt-2'>
-                    <button onClick={resta}>-</button>
-                    <button onClick={suma}>+</button>
+                    <button className='m-2' onClick={resta}>-</button>
+                    <button  className='m-2' onClick={suma}>+</button>
                 </div>
                 <button className='w-100 mt-2 botonAgregar btn btn-primary' onClick={manejadorCarrito}>Agregar al carrito</button>
             </div>

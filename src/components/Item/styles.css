@@ -1,3 +1,10 @@
 .item{
-    display: flex;
+    height: 350px !important;
+    width: 200px;
+    color: black;
+}
+
+.imagen{
+    width: 200px;
+    height: 200px;
 }

@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import bootstrap from 'bootstrap'
 import Navbar from './components/NavBar/NavBar';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import ItemListContainer from './pages/ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './pages/ItemDetailContainer/ItemDetailContainer';
 
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
@@ -14,12 +14,23 @@ function App() {
   };
   
   return (
-    <div className="App">
+    <BrowserRouter>
       <Navbar />
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="detail/:id" element={<ItemDetailContainer />} />
+      </Routes>
+
+      <div className="App">
+     
       
-      <ItemListContainer />
-      <ItemDetailContainer />
-    </div>
+     
+     
+   </div>
+
+
+    </BrowserRouter>
+  
   );
 }
 

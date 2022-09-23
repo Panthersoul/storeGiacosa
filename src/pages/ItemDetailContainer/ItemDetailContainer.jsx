@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import mockData from '../mockData';
-import ItemDetail from "../ItemDetail/ItemDetail";
-import styles from './styles.css'
+import mockData from '../../components/mockData';
+import ItemDetail from "../../components/ItemDetail/ItemDetail";
+import styles from './styles.css';
+import { useParams } from 'react-router-dom';
 
 
 const ItemDetailContainer = () => {
 
     const [product, setProduct] = useState({});
     const [loader, setLoader] = useState(true);
-    const productId = 1;
+    const productId = 0;
+    const {id} = useParams();
+
 
 
     const getProduct = () => {
@@ -19,11 +22,10 @@ const ItemDetailContainer = () => {
         })
     }
 
-
     useEffect (() => {
         getProduct().then(prod => {
+            setProduct( prod.filter(prod => prod.id === parseInt(id)));
             setLoader(false);
-            setProduct(prod.filter(prod => prod.id === 3))
         })               
     }, [productId])
 
@@ -34,6 +36,7 @@ const ItemDetailContainer = () => {
     return (
         <div className="itemDetailContainer d-flex mt-5">
             {
+                
                 product.map((producto)=>(
                     <ItemDetail 
                     key={producto.id} 

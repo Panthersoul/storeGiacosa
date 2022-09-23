@@ -1,7 +1,7 @@
 import styles from './styles.css'
-import mockData from '../mockData'
+import mockData from '../../components/mockData'
 import { useEffect, useState } from 'react'
-import ItemList from '../ItemList/ItemList'
+import ItemList from '../../components/ItemList/ItemList'
 
 const ItemListContainer = () => {
 
@@ -28,8 +28,8 @@ const ItemListContainer = () => {
 
     return (
         <>
-            <div className='ItemListContainer pt-5'>
-                <ItemList lista={productList}/>
+            <div className='container ItemListContainer pt-5'>
+                {productList && <ItemList lista={productList}/>} 
             </div>
         </>
     )

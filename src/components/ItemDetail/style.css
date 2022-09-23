@@ -1,6 +1,10 @@
 .productDetail{
     border: 1px solid;
     border-radius: 15px;
-    max-width: 222px;
     
+}
+
+.imagen{
+    width: 200px;
+    height: 200px;
 }
