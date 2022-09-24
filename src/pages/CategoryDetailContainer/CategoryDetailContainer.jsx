@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import mockData from '../../components/mockData';
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import styles from './styles.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 const CategoryDetailContainer = () => {
 
@@ -10,7 +10,12 @@ const CategoryDetailContainer = () => {
     const [loader, setLoader] = useState(true);
     const categoriaName = '';
     const catName = useParams();
+    const location = useLocation();
     
+
+    useEffect(()=> {
+        cargoCategorias()
+    }, [location])
 /*Aqui la simulacion del acceso a datos*/
 const getCategoria = () => {
     return new Promise ((resolve, reject) => {
@@ -21,13 +26,17 @@ const getCategoria = () => {
 }
 
 useEffect (() => {
+    cargoCategorias()
+}, []);
+
+
+function cargoCategorias() {
+    
     getCategoria().then(prod => {
         setCategorias(prod.filter(produ => produ.categoria === catName.categoryId));
         setLoader(false);
-        console.log(categoria);
-    })               
-}, [categoriaName])
-
+        })
+    }
 
 if (loader) return (
     <div className="container text-center mt-5">
