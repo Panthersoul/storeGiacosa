@@ -16,7 +16,7 @@ return  (
                   <h1>{titulo}</h1>
                   <img className="imagen" src={img} alt="imagen" />
                   <h6 className="pt-2">{descripcion}</h6>
-                  <p>Precio: $ {precio}</p>
+                  <p className="precio">Precio: $ {precio}</p>
                   <ItemCount stock={10} initial={0} onAdd={manejadorCarrito}/>
               </div>
                   

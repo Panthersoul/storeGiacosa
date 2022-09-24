@@ -8,3 +8,11 @@
     width: 200px;
     height: 200px;
 }
+
+.precio{
+    font-size: larger;
+    font-weight: bold;
+    font-style: italic;
+    color: blue;
+    
+}
