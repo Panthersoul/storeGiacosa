@@ -2,17 +2,40 @@ import styles from './styles.css'
 import mockData from '../../components/mockData'
 import { useEffect, useState } from 'react'
 import ItemList from '../../components/ItemList/ItemList'
+import { useParams, useLocation } from 'react-router-dom'
 
 const ItemListContainer = () => {
 
     /*Declaro el state para manejar los productos*/
     const [productList, setproductList] = useState([])
+    const {categoryId} = useParams();
+    const [loader, setLoader] = useState(true);
+
+    const location = useLocation();
+    useEffect(()=> {
+        cargoCategorias()
+    }, [location])
+
+
+    
+function cargoCategorias() {
+    
+    if (categoryId === undefined)
+            {
+                getProducts().then(products => { setproductList(products);} )
+                
+            }else{
+            getProducts().then(prod => {
+            setproductList(prod.filter(produ => produ.categoria === categoryId));
+            
+            })
+        }
+    }
 
     /*Llamo la lista una vez montado el componente*/
     useEffect (() => {
-        getProducts().then(products => {
-            setproductList(products);
-        })
+        setLoader(false);
+       cargoCategorias()
     },[])
 
     
@@ -25,6 +48,13 @@ const ItemListContainer = () => {
             }, 2000);
         })
     }
+
+
+    if (loader) return (
+        <div className="container text-center mt-5">
+            <h3>Listando los articulos...</h3>
+        </div>
+    )
 
     return (
         <>

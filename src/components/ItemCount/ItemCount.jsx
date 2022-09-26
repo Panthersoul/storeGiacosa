@@ -30,7 +30,8 @@ const ItemCount  = ({stock, initial, onAdd}) => {
             <div className='contadorContainer flex-column '>
                 <h4>{initialState}</h4>
                 <div className='d-flex justify-content-center pt-2'>
-                    <input type="text" className='inputAuto text-center'></input>
+                    {//<input type="text" className='inputAuto text-center'></input> 
+            }
                 </div>
                 <div className='pt-2'>
                     <button className='m-2' onClick={resta}>-</button>
