@@ -6,7 +6,7 @@ import ItemListContainer from './pages/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './pages/ItemDetailContainer/ItemDetailContainer';
 import CartContainer from './pages/CartContainer/CartContainer'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import { CartContext } from './context/CartContext';
+import  CartProvider  from './context/CartProvider';
 
 function App() {
   
@@ -15,7 +15,7 @@ function App() {
   };
   
   return (
-    <CartContext.Provider value={[]}>
+    <CartProvider>
         <BrowserRouter>
               <Navbar />
             <Routes>
@@ -27,7 +27,7 @@ function App() {
             <div className="App">
             </div>
         </BrowserRouter>
-    </ CartContext.Provider >
+    </ CartProvider>
 
     
 
