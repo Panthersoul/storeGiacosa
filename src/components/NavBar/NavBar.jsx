@@ -55,7 +55,7 @@ const NavBar = () => {
                     </div>
                     
                 </div>
-                    <CartWidget items={0} />
+                    <CartWidget />
                 </div>
         </nav>
     );

@@ -1,5 +1,5 @@
 .cartWidget-p {
-    color: black;
+    color: white;
     margin: 0px;
     margin-left: 5px;
     margin-top: 5px;
@@ -7,4 +7,9 @@
     border-radius: 90px;
     width: 21px;
     height: 23px;
+    padding-left: 3px;
+}
+
+.carroManito{
+    cursor: pointer;
 }
