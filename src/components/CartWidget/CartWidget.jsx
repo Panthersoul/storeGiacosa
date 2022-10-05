@@ -15,6 +15,7 @@ const CartWidget = () => {
             <img src={carrito} alt="Carrito" />
             {[...cart].length !== 0 ? <p className='cartWidget-p'>{itemQuantity}</p> : <p></p>}
         </div>
+    
     )
 }
 
