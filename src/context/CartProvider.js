@@ -35,20 +35,6 @@ const CartProvider = ( {children} ) => {
         cart.splice(indice, 1);
     }
 
-    /*
-        >> Consigna: implementa React Context para mantener el estado de compra del user, siguiendo los detalles del manual.
-        >>Aspectos a incluir en el entregable:
-        CartContext.js con el context y su custom provider (Impórtalo en App.js)
-        Al clickear comprar en ItemDetail se debe guardar en el CartContext el producto y su cantidad en forma de objeto { name, price, quantity, etc. } dentro del array de productos agregados
-        Detalle importante: CartContext debe tener la lógica incorporada de no aceptar duplicados y mantener su consistencia.
-        Métodos recomendados: 
-        addItem(item, quantity) // agregar cierta cantidad de un ítem al carrito
-        removeItem(itemId) // Remover un item del cart por usando su id
-        clear() // Remover todos los items
-        isInCart: (id) => true|false
-
-    
-    */
 
     const emptyCart = () => { setCart([]) };
 

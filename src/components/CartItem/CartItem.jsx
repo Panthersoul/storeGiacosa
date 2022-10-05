@@ -1,9 +1,18 @@
+import { useContext } from 'react'
+import { CartContext } from '../../context/CartProvider'
+
+
 const CartItem = () => {
+
+    const { carro } = useContext(CartContext)
+    console.log( {carro} );
+    
+
     return (
-        <div className="container d-flex justify-content-center text-center">
-            <div>Carrito</div>
-        </div>
-    )
+        <>
+        </>
+        )
 }
+
 
 export default CartItem;

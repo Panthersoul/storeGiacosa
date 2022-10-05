@@ -1,8 +1,8 @@
-import CartItem from "../../components/CartItem/CartItem";
+import Cart from '../../components/Cart/Cart'
 
 const CartContainer = () => {
     return (
-        <CartItem />
+        <Cart />
     )
 }
 
