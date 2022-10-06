@@ -45,6 +45,7 @@ const ItemDetailContainer = () => {
                 product.map((producto)=>(
                     <ItemDetail 
                     key={producto.id} 
+                    id={producto.id}
                     titulo={producto.titulo}
                     descripcion={producto.descripcion}
                     categoria={producto.categoria}

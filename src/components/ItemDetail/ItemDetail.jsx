@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartProvider";
 
 
-const ItemDetail = ( { titulo, descripcion, precio, categoria, img} ) => {
+const ItemDetail = ( { titulo, descripcion, precio, categoria, img, id} ) => {
 
   const [showItemCount, setShowItemCount] = useState(true);
   const { addToCart } = useContext(CartContext);
@@ -15,7 +15,7 @@ const ItemDetail = ( { titulo, descripcion, precio, categoria, img} ) => {
 
     setShowItemCount(false);
     
-    addToCart({ titulo, descripcion, precio, img, categoria}, cantidad)
+    addToCart({ titulo, descripcion, precio, img, categoria, id}, cantidad)
     //alert(`Agregaste ${cantidad} al carrito`)
   };
 
@@ -29,7 +29,8 @@ return  (
                   <img className="imagen" src={img} alt="imagen" />
                   <h6 className="pt-2">{descripcion}</h6>
                   <p className="precio">Precio: $ {precio}</p>
-                  {showItemCount ? <ItemCount stock={10} initial={1} onAdd={manejadorCarrito}/> : <Link to='/cart'><button>Ver Carrito</button></Link>  }
+                  <p className="visually-hidden">{id}</p>
+                  {showItemCount ? <ItemCount stock={10} initial={1} onAdd={manejadorCarrito}/> : <Link to='/cart'><button>Terminar Compra</button></Link>  }
               </div>
                   
                   
