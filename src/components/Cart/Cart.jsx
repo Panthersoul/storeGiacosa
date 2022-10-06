@@ -20,15 +20,21 @@ const Cart = () => {
             </p>
         </div>
         </>) : (<>
-            <div className="container d-flex text-center mt-4 ">
+            <div className="container d-flex text-center mt-4 justify-content-center flex-column  ancho-max-500">
                 {cart.map((item) => (
-                    <div className="ancho-300 p-2" key={item.id}>
-                        <h3>{item.titulo}</h3>
+                    <div className=" p-2 flex-row d-flex justify-content-around border m-2" key={item.id}>
+                        <div>
                         <img className="ancho-50" src={item.img} alt="Imagen Carrito" />
-                        <p className="mt-2">{item.categoria}</p>
-                        <p><strong>Cantidad: {item.quantity} </strong> </p>
+                        </div>
+                        <div>
+                            <h3>{item.titulo}</h3>
+                            <p className="mt-2">{item.categoria}</p>
+                            <p><strong>Cantidad: {item.quantity} </strong> </p>
+                            <p><strong>Coste: $ {item.quantity * item.precio} </strong> </p>
+                        </div>
                     </div>
                 ))}
+                
             </div>
         </>)
     )

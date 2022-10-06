@@ -5,3 +5,7 @@
 .ancho-300{
     width: 300px;
 }
+
+.ancho-max-500{
+    max-width: 300px;
+}
