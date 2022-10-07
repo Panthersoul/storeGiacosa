@@ -7,7 +7,8 @@ const CartProvider = ( {children} ) => {
     const [itemQuantity, setItemQuantity] = useState(0);
     
     useEffect(() => {
-       console.log(cart)
+       console.log('Cart Provider', cart)
+       console.log('childre', {children});
     }, [cart])
 
     const isInCart = (id) => {
@@ -27,12 +28,20 @@ const CartProvider = ( {children} ) => {
 
     const removeItem = (id) => {
         //Busco el indice en el cart, del articulo con el id 
-        let indice = cart.findIndex(elem => {
-            return elem.id === id
-        });
-        
-        //quito del carro, el elemento con el indice devuelto
-        cart.splice(indice, 1);
+        let arrayProduct = [];
+        let contadorCantidad = 0;
+        cart.forEach((elem) => {
+            console.log('elem', elem.id);
+            if (elem.id === id){
+                console.log(elem);
+            }else{
+                arrayProduct.push(elem)
+                contadorCantidad += elem.quantity;
+            }
+        })
+        setCart(arrayProduct)
+        console.log('counter '+contadorCantidad);
+        setItemQuantity(contadorCantidad);
     }
 
 
@@ -40,7 +49,7 @@ const CartProvider = ( {children} ) => {
 
 
     return(
-        <CartContext.Provider value={ {cart, addToCart, itemQuantity} }>
+        <CartContext.Provider value={ {cart, addToCart, removeItem, emptyCart, isInCart, itemQuantity} }>
             {children}
         </CartContext.Provider>
     )
