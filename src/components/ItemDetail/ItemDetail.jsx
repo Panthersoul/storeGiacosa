@@ -6,15 +6,17 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartProvider";
 
 
+
 const ItemDetail = ( { titulo, descripcion, precio, categoria, img, id} ) => {
 
   const [showItemCount, setShowItemCount] = useState(true);
   const { addToCart } = useContext(CartContext);
 
-  const manejadorCarrito = (cantidad) => {
+  
 
+
+  const manejadorCarrito = (cantidad) => {
     setShowItemCount(false);
-    
     addToCart({ titulo, descripcion, precio, img, categoria, id}, cantidad)
     //alert(`Agregaste ${cantidad} al carrito`)
   };

@@ -7,8 +7,7 @@ const CartProvider = ( {children} ) => {
     const [itemQuantity, setItemQuantity] = useState(0);
     
     useEffect(() => {
-       console.log('Cart Provider', cart)
-       console.log('childre', {children});
+       console.log("Cart provider is active");
     }, [cart])
 
     const isInCart = (id) => {
@@ -33,14 +32,16 @@ const CartProvider = ( {children} ) => {
         cart.forEach((elem) => {
             console.log('elem', elem.id);
             if (elem.id === id){
+                //dummy action
                 console.log(elem);
+
             }else{
                 arrayProduct.push(elem)
                 contadorCantidad += elem.quantity;
             }
         })
         setCart(arrayProduct)
-        console.log('counter '+contadorCantidad);
+        
         setItemQuantity(contadorCantidad);
     }
 

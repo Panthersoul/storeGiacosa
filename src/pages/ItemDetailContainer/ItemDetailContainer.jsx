@@ -3,31 +3,32 @@ import mockData from '../../components/mockData';
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import styles from './styles.css';
 import { useParams } from 'react-router-dom';
-
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
 
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
     const [loader, setLoader] = useState(true);
     const productId = 0;
     const {id} = useParams();
 
-
-
     const getProduct = () => {
-        return new Promise ((resolve, reject) => {
-            setTimeout(() => { 
-                resolve(mockData);
-            }, 2000);
-        })
+        const db = getFirestore();  
+        const queryDoc = doc(db, 'items', id);
+        getDoc(queryDoc).then(res => {
+            const datosProdu = {id: res.id, ...res.data()}
+            setProduct(datosProdu);    
+        }).catch( err => {console.log(err);})
+        
     }
 
     useEffect (() => {
-        getProduct().then(prod => {
-            setProduct( prod.filter(prod => prod.id === parseInt(id)));
-            setLoader(false);
-        })               
-    }, [productId])
+        getProduct()
+    }, [])
+
+    useEffect (() => {
+        setLoader(false)            
+    }, [product])
 
     if (loader){
         return (  
@@ -42,7 +43,7 @@ const ItemDetailContainer = () => {
         <div className="itemDetailContainer d-flex mt-5">
             {
                 
-                product.map((producto)=>(
+                [product].map((producto)=>(
                     <ItemDetail 
                     key={producto.id} 
                     id={producto.id}
