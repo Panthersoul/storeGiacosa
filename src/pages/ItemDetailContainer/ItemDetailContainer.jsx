@@ -26,36 +26,42 @@ const ItemDetailContainer = () => {
         getProduct()
     }, [])
 
+    //Seteo un segundo de delay para que renderice 
     useEffect (() => {
-        setLoader(false)            
+        setTimeout(() => {
+            setLoader(false)                
+        }, 500);
     }, [product])
 
-    if (loader){
-        return (  
-              <div className="container text-center mt-5">
-                  <h3>Cargando detalle del producto ...</h3>
-              </div>
-              
-              )
-    }
+
+
+
 
     return (
-        <div className="itemDetailContainer d-flex mt-5">
+        <div>
             {
-                
-                [product].map((producto)=>(
-                    <ItemDetail 
-                    key={producto.id} 
-                    id={producto.id}
-                    titulo={producto.titulo}
-                    descripcion={producto.descripcion}
-                    categoria={producto.categoria}
-                    precio={producto.precio}
-                    img={producto.img}
-                     />
-                ))
-            }
-            
+            loader 
+            ? (<div className="container text-center mt-5"> <h3>Cargando detalle del producto ...</h3></div>) 
+            : (
+                <div className="itemDetailContainer d-flex mt-5">
+                    {
+                        
+                        [product].map((producto)=>(
+                            <ItemDetail 
+                            key={producto.id} 
+                            id={producto.id}
+                            titulo={producto.titulo}
+                            descripcion={producto.descripcion}
+                            categoria={producto.categoria}
+                            precio={producto.precio}
+                            img={producto.img}
+                            stock={producto.stock}
+                            />
+                        ))
+                    }
+                    
+                </div>
+            )}
         </div>
     )
 }

@@ -7,18 +7,14 @@ import { CartContext } from "../../context/CartProvider";
 
 
 
-const ItemDetail = ( { titulo, descripcion, precio, categoria, img, id} ) => {
+const ItemDetail = ( { titulo, descripcion, precio, categoria, img, stock, id} ) => {
 
   const [showItemCount, setShowItemCount] = useState(true);
   const { addToCart } = useContext(CartContext);
 
-  
-
-
   const manejadorCarrito = (cantidad) => {
     setShowItemCount(false);
-    addToCart({ titulo, descripcion, precio, img, categoria, id}, cantidad)
-    //alert(`Agregaste ${cantidad} al carrito`)
+    addToCart({ titulo, descripcion, precio, img, categoria, stock, id}, cantidad)
   };
 
 return  (
@@ -32,10 +28,8 @@ return  (
                   <h6 className="pt-2">{descripcion}</h6>
                   <p className="precio">Precio: $ {precio}</p>
                   <p className="visually-hidden">{id}</p>
-                  {showItemCount ? <ItemCount stock={10} initial={1} onAdd={manejadorCarrito}/> : <Link to='/cart'><button>Terminar Compra</button></Link>  }
+                  {showItemCount ? <ItemCount stock={stock} initial={1} onAdd={manejadorCarrito}/> : <Link to='/cart'><button>Terminar Compra</button></Link>  }
               </div>
-                  
-                  
             </div>
            </div>
         </>
@@ -43,5 +37,3 @@ return  (
 }
 
 export default ItemDetail;
-
-
