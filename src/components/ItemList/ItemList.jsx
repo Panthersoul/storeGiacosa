@@ -7,12 +7,12 @@ const ItemList = ({lista}) => {
             {
             lista.map((producto)=>(
                 <Link
-                    key={producto.id}
+                key={producto.id}
                     to={'/detail/' + producto.id}
                     style={{textDecoration: 'none', color: 'white'}}
                 >
                     <Item 
-                    
+                    id={producto.id}
                     titulo={producto.titulo} 
                     precio={producto.precio} 
                     img={producto.img} 

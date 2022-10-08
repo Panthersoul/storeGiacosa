@@ -3,57 +3,65 @@ import mockData from '../../components/mockData';
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import styles from './styles.css';
 import { useParams } from 'react-router-dom';
-
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
 
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
     const [loader, setLoader] = useState(true);
     const productId = 0;
     const {id} = useParams();
 
-
-
     const getProduct = () => {
-        return new Promise ((resolve, reject) => {
-            setTimeout(() => { 
-                resolve(mockData);
-            }, 2000);
-        })
+        const db = getFirestore();  
+        const queryDoc = doc(db, 'items', id);
+        getDoc(queryDoc).then(res => {
+            const datosProdu = {id: res.id, ...res.data()}
+            setProduct(datosProdu);    
+        }).catch( err => {console.log(err);})
+        
     }
 
     useEffect (() => {
-        getProduct().then(prod => {
-            setProduct( prod.filter(prod => prod.id === parseInt(id)));
-            setLoader(false);
-        })               
-    }, [productId])
+        getProduct()
+    }, [])
 
-    if (loader){
-        return (  
-              <div className="container text-center mt-5">
-                  <h3>Cargando detalle del producto ...</h3>
-              </div>
-              
-              )
-    }
+    //Seteo un segundo de delay para que renderice 
+    useEffect (() => {
+        setTimeout(() => {
+            setLoader(false)                
+        }, 500);
+    }, [product])
+
+
+
+
 
     return (
-        <div className="itemDetailContainer d-flex mt-5">
+        <div>
             {
-                
-                product.map((producto)=>(
-                    <ItemDetail 
-                    key={producto.id} 
-                    titulo={producto.titulo}
-                    descripcion={producto.descripcion}
-                    categoria={producto.categoria}
-                    precio={producto.precio}
-                    img={producto.img}
-                     />
-                ))
-            }
-            
+            loader 
+            ? (<div className="container text-center mt-5"> <h3>Cargando detalle del producto ...</h3></div>) 
+            : (
+                <div className="itemDetailContainer d-flex mt-5">
+                    {
+                        
+                        [product].map((producto)=>(
+                            <ItemDetail 
+                            key={producto.id} 
+                            id={producto.id}
+                            titulo={producto.titulo}
+                            descripcion={producto.descripcion}
+                            categoria={producto.categoria}
+                            precio={producto.precio}
+                            img={producto.img}
+                            stock={producto.stock}
+                            />
+                        ))
+                    }
+                    
+                </div>
+            )}
         </div>
     )
 }
