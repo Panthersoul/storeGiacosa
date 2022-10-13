@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartProvider";
 import { Link, NavLink } from 'react-router-dom';
 import styles from './css/styles.css'
+import { getFirestore, collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import  moment  from 'moment'
 
 const Cart = () => {
 
@@ -15,6 +17,59 @@ const Cart = () => {
         })
         return total
     }
+
+    
+
+        const createOrder = () => {
+            const db = getFirestore();
+            const order = {
+                buyer: {
+                    name: 'Andres',
+                    phone: parseInt('099111222'),
+                    email: 'test@testo.com'
+                },
+                items: cart,
+                total: cart.reduce((valorPasado, valorActual) => valorPasado + (valorActual.precio * valorActual.quantity), 0),
+                date: moment().format('MMMM Do YYYY, h:mm:ss a')
+            };
+
+            const query = collection(db, 'venta');
+            addDoc(query, order)
+                .then(({id}) => {
+                    alert('Compra realizada!... si id es: ' + id)
+                    console.log(id);
+                })
+                .catch((err) => alert('Tu compra no se ha realizado ' + err))
+        }
+
+        /**/
+            const updateOrder = () => {
+                const idOrder = 'p1hW1FeY5hJQnAIAgLr8'
+                const db = getFirestore();
+                const order = {
+                    buyer: {
+                        name: 'Orden Actualizada',
+                        phone: parseInt('099111222'),
+                        email: 'test@testo.com'
+                    },
+                    items: cart,
+                    total: cart.reduce((valorPasado, valorActual) => valorPasado + (valorActual.precio * valorActual.quantity), 0),
+                    date: moment().format('MMMM Do YYYY, h:mm:ss a')
+                };
+
+                const queryUpdate = doc(db, 'venta', idOrder);
+                updateDoc(queryUpdate, order)
+                .then((res) => {
+                    alert('Compra actualizada!')
+                    console.log(res);
+                })
+                .catch((err) => alert('Tu compra no se ha realizado'+ err))
+            }
+
+        /**/
+
+
+
 
     return (
         cart.length === 0 ? (<>
@@ -47,6 +102,10 @@ const Cart = () => {
             </div>
             <div className="container d-flex text-center mt-4 justify-content-center flex-column  ancho-max-500">
                     <h4>TOTAL: $ {totalCarrito()}</h4>
+            </div>
+            <div className="container d-flex  mt-4 justify-content-center flex-column  ancho-max-500">
+                    <button className="btn btn-success" onClick={createOrder}>Realizar la orden</button>
+                    <button className="btn btn-secondary mt-4" onClick={updateOrder}>Actualizo la orden</button>
             </div>
         </>)
     )

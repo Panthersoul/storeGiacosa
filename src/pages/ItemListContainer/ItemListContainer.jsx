@@ -3,7 +3,7 @@ import mockData from '../../components/mockData'
 import { useEffect, useState } from 'react'
 import ItemList from '../../components/ItemList/ItemList'
 import { useParams, useLocation } from 'react-router-dom'
-import { getFirestore, collection, getDocs, query } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 
 
 const ItemListContainer = () => {
@@ -27,21 +27,34 @@ const ItemListContainer = () => {
     },[])
 
     const getProducts =  () => {
-        return new Promise ((resolve, reject) => {
+        
             const db = getFirestore();  
             const querySnapShot =  collection(db, 'items');
-            getDocs(querySnapShot).then(res => {
-                const data = res.docs.map((doc) => {
-                    return {id: doc.id, ...doc.data()}
-                })
-                /* Agrego el filtro por categoría */
-                if (categoryId === undefined){
+
+            /* Agrego el filtro por categoría */
+            if (categoryId){
+                const queryFiltered = query(
+                    querySnapShot, 
+                    where("categoria", "==", categoryId));
+
+                getDocs(queryFiltered).then(res => {
+                    const data = res.docs.map((doc) => {
+                        return {id: doc.id, ...doc.data()}
+                    });
                     setproductList(data)
-                }else{
-                    setproductList(data.filter(produ => produ.categoria === categoryId));
-                }
-            })
-        }).catch(err => {console.log(err);})
+
+                }).catch(err => {console.log(err);})
+                
+            }else{
+                getDocs(querySnapShot).then(res => {
+                    const datos = res.docs.map((doc) => {
+                        return {id: doc.id, ...doc.data()}
+                    });
+                    setproductList(datos)
+                }).catch(err => {console.log(err);})
+                    
+            }
+        
     }
 
 
