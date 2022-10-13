@@ -8,7 +8,6 @@ import  moment  from 'moment'
 const Cart = () => {
 
     const {cart, removeItem } = useContext(CartContext);
-    console.log('cart', cart);
 
     const totalCarrito = () => {
         let total = 0
@@ -37,7 +36,7 @@ const Cart = () => {
             addDoc(query, order)
                 .then(({id}) => {
                     alert('Compra realizada!... si id es: ' + id)
-                    console.log(id);
+                    /* console.log(id); */
                 })
                 .catch((err) => alert('Tu compra no se ha realizado ' + err))
         }
