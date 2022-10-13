@@ -101,6 +101,7 @@ const Cart = () => {
             </div>
             <div className="container d-flex text-center mt-4 justify-content-center flex-column  ancho-max-500">
                     <h4>TOTAL: $ {totalCarrito()}</h4>
+                    
             </div>
             <div className="container d-flex  mt-4 justify-content-center flex-column  ancho-max-500">
                     <button className="btn btn-success" onClick={createOrder}>Realizar la orden</button>
