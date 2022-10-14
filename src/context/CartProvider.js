@@ -26,7 +26,6 @@ const CartProvider = ( {children} ) => {
     };
 
     const removeItem = (id) => {
-        //Busco el indice en el cart, del articulo con el id 
         let arrayProduct = [];
         let contadorCantidad = 0;
         cart.forEach((elem) => {
@@ -34,20 +33,16 @@ const CartProvider = ( {children} ) => {
             if (elem.id === id){
                 //dummy action
                 console.log(elem);
-
             }else{
                 arrayProduct.push(elem)
                 contadorCantidad += elem.quantity;
             }
         })
         setCart(arrayProduct)
-        
         setItemQuantity(contadorCantidad);
     }
 
-
     const emptyCart = () => { setCart([]) };
-
 
     return(
         <CartContext.Provider value={ {cart, addToCart, removeItem, emptyCart, isInCart, itemQuantity} }>

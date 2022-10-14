@@ -14,7 +14,9 @@ const ItemListContainer = () => {
     const [loader, setLoader] = useState(true);
     const location = useLocation();
 
-   
+    const db = getFirestore();  
+    const queryBase =  collection(db, 'items');
+    const queryFinal = categoryId ? query( queryBase,  where("categoria", "==", categoryId)) : queryBase;
 
     useEffect(()=> {
         getProducts();
@@ -27,34 +29,13 @@ const ItemListContainer = () => {
     },[])
 
     const getProducts =  () => {
-        
-            const db = getFirestore();  
-            const querySnapShot =  collection(db, 'items');
-
-            /* Agrego el filtro por categoría */
-            if (categoryId){
-                const queryFiltered = query(
-                    querySnapShot, 
-                    where("categoria", "==", categoryId));
-
-                getDocs(queryFiltered).then(res => {
+                getDocs(queryFinal).then(res => {
                     const data = res.docs.map((doc) => {
                         return {id: doc.id, ...doc.data()}
                     });
                     setproductList(data)
 
-                }).catch(err => {console.log(err);})
-                
-            }else{
-                getDocs(querySnapShot).then(res => {
-                    const datos = res.docs.map((doc) => {
-                        return {id: doc.id, ...doc.data()}
-                    });
-                    setproductList(datos)
-                }).catch(err => {console.log(err);})
-                    
-            }
-        
+                }).catch(err => {console.log(err);})        
     }
 
 

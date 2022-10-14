@@ -3,11 +3,16 @@ import { CartContext } from "../../context/CartProvider";
 import { Link, NavLink } from 'react-router-dom';
 import styles from './css/styles.css'
 import { getFirestore, collection, addDoc, updateDoc, doc } from "firebase/firestore";
-import  moment  from 'moment'
+import  moment  from 'moment';
+import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Cart = () => {
 
-    const {cart, removeItem } = useContext(CartContext);
+    const {cart, removeItem, emptyCart } = useContext(CartContext);
+    const [correo, setCorreo] = useState("");
 
     const totalCarrito = () => {
         let total = 0
@@ -17,28 +22,30 @@ const Cart = () => {
         return total
     }
 
-    
+    const [order, setOrder] = useState({
+        buyer: {
+            name: '',
+            phone: 0,
+            email: ''
+        },
+        items: cart,
+        total: cart.reduce((valorPasado, valorActual) => valorPasado + (valorActual.precio * valorActual.quantity), 0),
+        date: moment().format('MMMM Do YYYY, h:mm:ss a')
+    })
+
 
         const createOrder = () => {
             const db = getFirestore();
-            const order = {
-                buyer: {
-                    name: 'Andres',
-                    phone: parseInt('099111222'),
-                    email: 'test@testo.com'
-                },
-                items: cart,
-                total: cart.reduce((valorPasado, valorActual) => valorPasado + (valorActual.precio * valorActual.quantity), 0),
-                date: moment().format('MMMM Do YYYY, h:mm:ss a')
-            };
-
             const query = collection(db, 'venta');
+
+            console.log('orden', order);
+            
+            
             addDoc(query, order)
                 .then(({id}) => {
-                    alert('Compra realizada!... si id es: ' + id)
-                    /* console.log(id); */
+                    toast('Compra realizada!... su id es: ' + id);
                 })
-                .catch((err) => alert('Tu compra no se ha realizado ' + err))
+                .catch((err) => toast('Tu compra no se ha realizado ' + err))
         }
 
         /**/
@@ -67,7 +74,43 @@ const Cart = () => {
 
         /**/
 
+            const realizarOrden = (event) =>{
+                event.preventDefault();                
+                console.log(order.buyer.email);
+                if (order.buyer.name !== '' && order.buyer.phone !== 0)
+                {
+                    if (order.buyer.email === '') {
+                        toast('El Email no puede estar vacío.');
+                    }else if ( order.buyer.email !== correo )
+                        {
+                            toast('Las direcciones de correo deben coincidir')
+                            }else{
+                                createOrder();
+                            }
+                }else{
+                    toast('Debe completar NOMBRE Y/O TELEFONO');
+                }
+            }
 
+
+        const handleInputChange = (e) => {
+            setOrder({
+                ...order,
+                buyer: {
+                    ...order.buyer,
+                    [e.target.name]: e.target.value
+                }
+            })
+        }
+
+
+        const handleCorreo = (e) => {
+            setCorreo(e.target.value)
+            console.log(correo);
+        
+        }
+        
+        
 
 
     return (
@@ -103,10 +146,48 @@ const Cart = () => {
                     <h4>TOTAL: $ {totalCarrito()}</h4>
                     
             </div>
+            <form action="" onSubmit={realizarOrden}>
             <div className="container d-flex  mt-4 justify-content-center flex-column  ancho-max-500">
-                    <button className="btn btn-success" onClick={createOrder}>Realizar la orden</button>
-                    <button className="btn btn-secondary mt-4" onClick={updateOrder}>Actualizo la orden</button>
-            </div>
+                <div>
+                    <div className="row">
+                        <div>
+                            <label htmlFor="name">Nombre: </label>
+                        </div>
+                        <div className="ms-5">
+                            <input type="text" name="name" value={order.buyer.name} onChange={handleInputChange} id="" />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div>
+                            <label htmlFor="phone">Telefono: </label>
+                        </div>
+                        <div className="ms-5">
+                            <input type="number" name="phone" value={order.buyer.phone} onChange={handleInputChange} id="" />
+                        </div>
+                    </div>
+                    <div className="row">
+                            <label htmlFor="correo">Email</label>
+                    </div>
+                    <div className="ms-5">
+                            <input type="email" name="correo" value={correo} onChange={handleCorreo}/>
+                    </div>
+                    <div className="row">
+                        <label htmlFor="email">Valide su email</label>
+                    </div>
+                    <div className="ms-5">
+                        <input type="email" name="email" value={ order.buyer.email} onChange={handleInputChange} />
+                    </div>
+
+                    <div className="row mt-4 ancho-300">
+                        <button className="btn btn-success" type="submit" >Realizar la orden</button>
+                    </div>
+            
+                </div>
+                </div>
+            </form>
+            <ToastContainer
+                autoClose={false}
+            />
         </>)
     )
 }

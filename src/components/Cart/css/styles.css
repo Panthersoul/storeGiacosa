@@ -9,3 +9,7 @@
 .ancho-max-500{
     max-width: 300px;
 }
+
+label {
+    font-family: 'Courier New', Courier, monospace
+}
