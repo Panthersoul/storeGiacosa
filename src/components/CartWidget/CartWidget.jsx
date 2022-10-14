@@ -18,7 +18,7 @@ const CartWidget = () => {
             <Link to='/cart'>
                 <div className='d-flex carroManito'>
                     <img src={carrito} alt="Carrito" />
-                    {console.log([...cart].lenght)}
+                    
                     {[...cart].length !== 0 ? <p className='cartWidget-p'>{itemQuantity}</p> : <p></p>}
                 </div>
             </Link> 

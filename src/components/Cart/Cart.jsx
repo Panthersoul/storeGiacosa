@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/CartProvider";
-import { Link, NavLink } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './css/styles.css'
 import { getFirestore, collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import  moment  from 'moment';
@@ -13,6 +13,7 @@ const Cart = () => {
 
     const {cart, removeItem, emptyCart } = useContext(CartContext);
     const [correo, setCorreo] = useState("");
+    const navegar = useNavigate();
 
     const totalCarrito = () => {
         let total = 0
@@ -44,6 +45,14 @@ const Cart = () => {
             addDoc(query, order)
                 .then(({id}) => {
                     toast('Compra realizada!... su id es: ' + id);
+                    console.log(id);
+                    toast('El ID estará en la consola, gracias por su compra.');
+                    
+                    setTimeout(() => {
+                        emptyCart();
+                        navegar('/')
+                    }, 6000);
+
                 })
                 .catch((err) => toast('Tu compra no se ha realizado ' + err))
         }

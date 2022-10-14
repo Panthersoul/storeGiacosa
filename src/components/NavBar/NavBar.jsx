@@ -47,10 +47,6 @@ const NavBar = () => {
                             >Belleza</NavLink>
                                 </ul>
                             </li>
-                            
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">NOSOTROS</a>
-                            </li>
                         </ul>
                     </div>
                     
