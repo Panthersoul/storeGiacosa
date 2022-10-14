@@ -76,7 +76,7 @@ const Cart = () => {
                 updateDoc(queryUpdate, order)
                 .then((res) => {
                     alert('Compra actualizada!')
-                    console.log(res);
+                    
                 })
                 .catch((err) => alert('Tu compra no se ha realizado'+ err))
             }
@@ -85,7 +85,7 @@ const Cart = () => {
 
             const realizarOrden = (event) =>{
                 event.preventDefault();                
-                console.log(order.buyer.email);
+                
                 if (order.buyer.name !== '' && order.buyer.phone !== 0)
                 {
                     if (order.buyer.email === '') {
@@ -115,12 +115,7 @@ const Cart = () => {
 
         const handleCorreo = (e) => {
             setCorreo(e.target.value)
-            console.log(correo);
-        
         }
-        
-        
-
 
     return (
         cart.length === 0 ? (<>

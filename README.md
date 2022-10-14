@@ -11,8 +11,8 @@ Una pequeña tienda OnLine con un carrito de compras
     - Generación de ordenes de compra.
     - Inserción a BD firebase.
     - Modificación de articulos en el carro.
-    - Formulario de compra con validación.
-
+    - Formulario de compra con validación de los datos de usuario.
+        - Una vez realizada la compra devuelve el ID de inserción en Firebase y se limpia el carrito
 
 ## Librerías 
 
@@ -34,4 +34,7 @@ En el directorio del proyecto, se puede ejecutar
 
 
 ## Aquí un gif demo
-     https://giphy.com/gifs/nhykFgWCVfu4Iafpsg
+    https://media.giphy.com/media/rV8j11Gt3PI91WNuRz/giphy.gif
+
+## Aquí un video explicativo
+    https://youtu.be/R2snBeLwKfE
