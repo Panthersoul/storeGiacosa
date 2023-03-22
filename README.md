@@ -1,4 +1,4 @@
-# Tienda Virtual por Andres Giacosa
+# Tienda Virtual 
 # Getting Started 
 
 Este es un proyecto académico para CODERHOUSE 2022
