@@ -1,7 +1,5 @@
-# Tienda Virtual 
+# Tienda Virtual - REACT
 # Getting Started 
-
-Este es un proyecto académico para CODERHOUSE 2022
 
 # En que consiste?
 Una pequeña tienda OnLine con un carrito de compras 
